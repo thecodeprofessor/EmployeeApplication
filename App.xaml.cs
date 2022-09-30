@@ -1,4 +1,6 @@
-﻿namespace EmployeeApplication;
+﻿using EmployeeApplication.Services;
+
+namespace EmployeeApplication;
 #if WINDOWS
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -14,6 +16,9 @@ public partial class App : Application
     public App()
 	{
 		InitializeComponent();
+
+        DependencyService.Register<EmployeeDataStoreAPI>();
+        DependencyService.Register<WebClientService>();
 
         Microsoft.Maui.Handlers.WindowHandler.Mapper.AppendToMapping(nameof(IWindow), (handler, view) =>
         {
