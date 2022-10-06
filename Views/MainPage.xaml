@@ -2,25 +2,21 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:EmployeeApplication.Models"
+             xmlns:viewmodels="clr-namespace:EmployeeApplication.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="EmployeeApplication.Views.MainPage">
 
-    <CollectionView>
-        <CollectionView.ItemsSource>
-            <x:Array Type="{x:Type models:Employee}">
-                <models:Employee
-                    Name="Brittany Pierce"
-                    Email="brittany.pierce@example.com"
-                    Image="https://randomuser.me/api/portraits/women/53.jpg"/>
-                <models:Employee
-                    Name="Evan Carter"
-                    Email="evan.carter@example.com"
-                    Image="https://randomuser.me/api/portraits/men/14.jpg"/>
-                <models:Employee
-                    Name="Marsha Terry"
-                    Email="marsha.terry@example.com"
-                    Image="https://randomuser.me/api/portraits/women/52.jpg"/>
-            </x:Array>
-        </CollectionView.ItemsSource>
+    <ContentPage.BindingContext>
+        <viewmodels:EmployeeListViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+                EventName="Appearing"
+                Command="{Binding PageAppearingCommand}" />
+    </ContentPage.Behaviors>
+    
+    <CollectionView ItemsSource="{Binding Employees}">
         <CollectionView.ItemTemplate>
             <DataTemplate x:DataType="models:Employee">
                 <HorizontalStackLayout Padding="10">

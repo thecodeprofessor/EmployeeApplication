@@ -11,5 +11,12 @@ namespace EmployeeApplication.Models
         public string Name { get; set; }
         public string Email { get; set; }
         public string Image { get; set; }
+
+        public Employee(string name, string email, string image)
+        {
+            Name = name;
+            Email = email;
+            Image = image;
+        }
     }
 }
