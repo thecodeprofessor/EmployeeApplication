@@ -1,9 +1,8 @@
 ﻿namespace EmployeeApplication.Views;
 
-
-public partial class MainPage : ContentPage
+public partial class EmployeePage : ContentPage
 {
-	public MainPage()
+	public EmployeePage()
 	{
 		InitializeComponent();
 	}

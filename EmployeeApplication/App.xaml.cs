@@ -1,6 +1,8 @@
 ﻿using EmployeeApplication.Services;
+using Microsoft.Maui.Controls;
 
 namespace EmployeeApplication;
+
 #if WINDOWS
 using Microsoft.UI;
 using Microsoft.UI.Windowing;
@@ -17,8 +19,9 @@ public partial class App : Application
 	{
 		InitializeComponent();
 
-        DependencyService.Register<EmployeeDataStoreAPI>();
         DependencyService.Register<WebClientService>();
+        DependencyService.Register<EmployeeDataStoreSqlite>();
+        DependencyService.Register<RandomUserAPI>();
 
         Microsoft.Maui.Handlers.WindowHandler.Mapper.AppendToMapping(nameof(IWindow), (handler, view) =>
         {
@@ -32,6 +35,7 @@ public partial class App : Application
             appWindow.Resize(new SizeInt32(WindowWidth, WindowHeight));
             #endif
         });
+
 
 
         MainPage = new AppShell();

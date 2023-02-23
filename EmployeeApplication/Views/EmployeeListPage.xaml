@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="EmployeeApplication.Views.EmployeeListPage"
+             xmlns:models="clr-namespace:EmployeeApplication.Models"
+             xmlns:viewmodels="clr-namespace:EmployeeApplication.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             >
+    <ContentPage.BindingContext>
+        <viewmodels:EmployeeListViewModel/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            EventName="Appearing"
+            Command="{Binding PageAppearingCommand}" />
+    </ContentPage.Behaviors>
+
+    <ContentPage.Content>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <CollectionView Grid.Row="0"
+                            ItemsSource="{Binding Employees}"
+                            SelectionMode="Single"
+                            SelectionChangedCommand="{Binding SelectCommand}"
+                            SelectionChangedCommandParameter="{Binding
+                            Source={RelativeSource Self},
+                            Path=SelectedItem}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="viewmodels:EmployeeViewModel">
+                    <HorizontalStackLayout Padding="10">
+                        <Frame Margin="10"
+                           BorderColor="Black"
+                           CornerRadius="50"
+                           HeightRequest="60"
+                           WidthRequest="60"
+                           IsClippedToBounds="True"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center">
+                            <Image Source="{Binding Image}"
+                                   Aspect="AspectFill"
+                                   Margin="-40"
+                                   HeightRequest="100"
+                                   WidthRequest="100"/>
+                        </Frame>
+                        <VerticalStackLayout VerticalOptions="Center">
+                        <Label Text="{Binding Name}"></Label>
+                        <Label Text="{Binding Email}"></Label>
+                    </VerticalStackLayout>
+                    </HorizontalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="0"
+                Text="+"
+                HorizontalOptions="End"
+                VerticalOptions="End"
+                Margin="0,0,30,30"
+                Command="{Binding AddCommand}"
+                FontSize="Large"
+                BackgroundColor="DodgerBlue"
+                TextColor="White"
+                CornerRadius="25"
+                HeightRequest="50"
+                WidthRequest="50" 
+                ZIndex="100"/>
+        </Grid>
+     </ContentPage.Content>
+</ContentPage>

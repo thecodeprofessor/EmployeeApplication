@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace EmployeeApplication;
 
@@ -10,13 +11,17 @@ public static class MauiProgram
 		builder
 			.UseMauiApp<App>()
             .UseMauiApp<App>().UseMauiCommunityToolkit()
-			.ConfigureFonts(fonts =>
+            .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
-			});
+                fonts.AddFont("FontAwesome.ttf", "FontAwesome");
+            });
 
+#if DEBUG
+		builder.Logging.AddDebug();
+#endif
 
-        return builder.Build();
+		return builder.Build();
 	}
 }
