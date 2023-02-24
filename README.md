@@ -4,9 +4,10 @@
 
 Helpful Links:
 
+
+https://github.com/dotnet/maui-samples
+
 https://learn.microsoft.com/en-ca/dotnet/maui/tutorials/notes-mvvm/?view=net-maui-7.0
-
-
 
 https://learn.microsoft.com/en-us/dotnet/maui/data-cloud/database-sqlite?view=net-maui-7.0
 
